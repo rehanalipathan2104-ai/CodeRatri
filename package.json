@@ -1,6 +1,19 @@
 {
+  "name": "coderatri",
+  "version": "1.0.0",
+  "description": "Express API server with Swagger documentation",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
   "dependencies": {
-    "node.js": "^0.0.1-security",
-    "postman": "^0.2.0"
+    "@prisma/client": "^7.10.0",
+    "express": "^5.3.0",
+    "swagger-ui-express": "^5.0.1",
+    "yamljs": "^0.3.0"
+  },
+  "devDependencies": {
+    "prisma": "^8.0.0-rc.22"
   }
 }
