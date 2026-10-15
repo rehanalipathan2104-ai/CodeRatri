@@ -1,12 +1,135 @@
 openapi: 3.0.0
 info:
-  title: My Express API
+  title: KisanSetu - Digital Marketplace for Farmers API
   version: 1.0.0
-  description: API documentation for my Express project
+  description: >
+    Comprehensive Agricultural E-Commerce, B2B Procurement, AI Diagnostics,
+    and Government MSP Intelligence Platform connecting Farmers, Consumers, and Industry.
+servers:
+  - url: http://localhost:3000
+    description: Local API Server
+
 paths:
-  /:
+  /api/health:
     get:
-      summary: Root endpoint
+      summary: Health check
+      description: Returns API health status and timestamp.
       responses:
         '200':
-          description: Successful response returning Hello World
+          description: Service is UP
+
+  /api/products:
+    get:
+      summary: List agricultural products
+      description: Retrieve fresh produce listings with filters for organic, bulk wholesale, and categories.
+      parameters:
+        - name: category
+          in: query
+          schema:
+            type: string
+        - name: is_organic
+          in: query
+          schema:
+            type: boolean
+        - name: is_bulk
+          in: query
+          schema:
+            type: boolean
+        - name: query
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of agricultural products
+    post:
+      summary: Add produce listing (Farmer)
+      description: Publish a new harvest listing with pricing and quantity.
+      responses:
+        '201':
+          description: Product published
+
+  /api/cart:
+    get:
+      summary: View consumer cart
+      responses:
+        '200':
+          description: Current cart items
+    post:
+      summary: Add item to cart
+      responses:
+        '200':
+          description: Item added
+
+  /api/orders:
+    get:
+      summary: List orders
+      description: View orders for consumer or farmer.
+      responses:
+        '200':
+          description: Order list
+    post:
+      summary: Checkout & create order
+      description: Process mock payment via UPI or Cards and generate tracking order.
+      responses:
+        '201':
+          description: Order created with tracking ID
+
+  /api/quotes:
+    get:
+      summary: List B2B RFQs
+      description: Retrieve wholesale quote requests and contract bids.
+      responses:
+        '200':
+          description: Quotes list
+    post:
+      summary: Submit RFQ (Industry buyer)
+      responses:
+        '201':
+          description: Quote broadcasted
+
+  /api/contracts:
+    get:
+      summary: View digital procurement contracts
+      responses:
+        '200':
+          description: Legally binding digital contracts
+
+  /api/msp:
+    get:
+      summary: Government MSP & APMC Mandi price intelligence
+      description: Live crop pricing comparison across states with historical trends and selling recommendations.
+      responses:
+        '200':
+          description: MSP and mandi price data
+
+  /api/marketplace:
+    get:
+      summary: Krishi Bazaar farm inputs
+      description: Subsidized fertilizers, certified seeds, equipment, and irrigation kits.
+      responses:
+        '200':
+          description: Farm inputs catalog
+
+  /api/ai/disease-detect:
+    post:
+      summary: AI Crop & Cattle Disease Diagnosis
+      description: Runs neural diagnostic on leaf or cattle symptoms, returns confidence score, cause, and treatments.
+      responses:
+        '200':
+          description: Diagnostic report and remedy
+
+  /api/ai/voice:
+    post:
+      summary: Voice NLP Intent Parser
+      description: Parses spoken audio command transcript into structured intent and speech response.
+      responses:
+        '200':
+          description: Parsed intent and speech feedback
+
+  /api/analytics:
+    get:
+      summary: Platform revenue & GMV analytics
+      responses:
+        '200':
+          description: Platform transaction metrics
