@@ -122,7 +122,7 @@ const initialData = {
       harvest_date: '2026-10-12',
       location_state: 'Maharashtra',
       location_district: 'Nashik',
-      image_url: 'https://images.unsplash.com/photo-1592924357228-91a4daadcfea?auto=format&fit=crop&w=600&q=80',
+      image_url: '/images/tomatoes.jpg',
       status: 'available',
       nutritional_info: 'High Lycopene, Vitamin C 28mg/100g'
     },
@@ -146,7 +146,7 @@ const initialData = {
       harvest_date: '2026-09-28',
       location_state: 'Punjab',
       location_district: 'Ludhiana',
-      image_url: 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&w=600&q=80',
+      image_url: '/images/wheat.jpg',
       status: 'available'
     },
     {
@@ -169,7 +169,7 @@ const initialData = {
       harvest_date: '2026-08-15',
       location_state: 'Punjab',
       location_district: 'Amritsar',
-      image_url: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=600&q=80',
+      image_url: '/images/rice.jpg',
       status: 'available'
     },
     {
@@ -192,7 +192,7 @@ const initialData = {
       harvest_date: '2026-10-01',
       location_state: 'Andhra Pradesh',
       location_district: 'Guntur',
-      image_url: 'https://images.unsplash.com/photo-1588252303782-cb80119abd6d?auto=format&fit=crop&w=600&q=80',
+      image_url: '/images/chillies.jpg',
       status: 'available'
     },
     {
@@ -215,7 +215,7 @@ const initialData = {
       harvest_date: '2026-10-10',
       location_state: 'Maharashtra',
       location_district: 'Ratnagiri',
-      image_url: 'https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&w=600&q=80',
+      image_url: '/images/mangoes.jpg',
       status: 'available'
     },
     {
@@ -228,7 +228,7 @@ const initialData = {
       category: 'Dairy & Honey',
       description: 'Handcrafted using traditional Vedic curd-churning (Bilona). Made from pasture-raised indigenous Gir cows.',
       variety: 'Vedic Bilona Ghee',
-      price_per_unit: 1450.00,
+      price_per_unit: 450.00,
       unit: 'litre',
       stock_quantity: 350,
       min_order_quantity: 1,
@@ -238,7 +238,7 @@ const initialData = {
       harvest_date: '2026-10-08',
       location_state: 'Andhra Pradesh',
       location_district: 'Tenali',
-      image_url: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=600&q=80',
+      image_url: '/images/desi_ghee.jpg',
       status: 'available'
     },
     {
@@ -261,7 +261,7 @@ const initialData = {
       harvest_date: '2026-10-02',
       location_state: 'Madhya Pradesh',
       location_district: 'Indore',
-      image_url: 'https://images.unsplash.com/photo-1599940824399-b87987ceb72a?auto=format&fit=crop&w=600&q=80',
+      image_url: '/images/soybeans.jpg',
       status: 'available'
     },
     {
@@ -284,7 +284,7 @@ const initialData = {
       harvest_date: '2026-10-05',
       location_state: 'Maharashtra',
       location_district: 'Lasalgaon',
-      image_url: 'https://images.unsplash.com/photo-1618512496248-a07fe83aa8cb?auto=format&fit=crop&w=600&q=80',
+      image_url: '/images/onions.jpg',
       status: 'available'
     }
   ],
@@ -523,7 +523,7 @@ const initialData = {
       subsidy_percentage: 15.0,
       in_stock: true,
       rating: 4.9,
-      image_url: 'https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?auto=format&fit=crop&w=500&q=80',
+      image_url: '/images/nano_urea.jpg',
       description: 'Revolutionary nanotechnology fertilizer. Increases crop yield by 8-10%, reduces soil acidification, 100% absorption.'
     },
     {
@@ -537,7 +537,7 @@ const initialData = {
       subsidy_percentage: 20.0,
       in_stock: true,
       rating: 4.8,
-      image_url: 'https://images.unsplash.com/photo-1595855759920-86582396756a?auto=format&fit=crop&w=500&q=80',
+      image_url: '/images/hybrid_seeds.jpg',
       description: 'Drought-resistant, yellow rust immune, high protein grain. 40kg bag with 98% germination guarantee.'
     },
     {
@@ -551,7 +551,7 @@ const initialData = {
       subsidy_percentage: 45.0, // PM-KUSUM subsidy
       in_stock: true,
       rating: 4.95,
-      image_url: 'https://images.unsplash.com/photo-1563514227147-6d2ff665a6a0?auto=format&fit=crop&w=500&q=80',
+      image_url: '/images/drip_irrigation.jpg',
       description: 'Saves 65% water with automated moisture sensor valves and mobile app remote pump control. PM-KUSUM eligible.'
     },
     {
@@ -565,7 +565,7 @@ const initialData = {
       subsidy_percentage: 0.0,
       in_stock: true,
       rating: 4.75,
-      image_url: 'https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?auto=format&fit=crop&w=500&q=80',
+      image_url: '/images/bio_neem.jpg',
       description: '10,000 PPM Azadirachtin cold-pressed pure neem oil. Completely non-toxic for bees while eliminating bollworm and aphids.'
     },
     {
@@ -579,7 +579,7 @@ const initialData = {
       subsidy_percentage: 25.0,
       in_stock: true,
       rating: 4.85,
-      image_url: 'https://images.unsplash.com/photo-1589923188900-85dae523342b?auto=format&fit=crop&w=500&q=80',
+      image_url: '/images/power_tiller.jpg',
       description: 'Heavy-duty 4-stroke engine for weeding in sugarcane, vegetable rows, and orchard inter-cultivation.'
     }
   ],
@@ -702,8 +702,8 @@ const db = {
     }
     if (filters.query) {
       const q = filters.query.toLowerCase();
-      list = list.filter(p => 
-        p.name.toLowerCase().includes(q) || 
+      list = list.filter(p =>
+        p.name.toLowerCase().includes(q) ||
         p.category.toLowerCase().includes(q) ||
         p.location_state.toLowerCase().includes(q) ||
         (p.variety && p.variety.toLowerCase().includes(q))
@@ -795,7 +795,7 @@ const db = {
     if (role === 'farmer') {
       // Find orders that contain any product by this farmer
       const farmerProductIds = dbState.products.filter(p => p.farmer_id === userId).map(p => p.id);
-      return dbState.orders.filter(ord => 
+      return dbState.orders.filter(ord =>
         ord.items && ord.items.some(item => farmerProductIds.includes(item.product_id))
       );
     }
@@ -932,17 +932,36 @@ const db = {
 
   // AI Services
   detectDisease: (imageMeta = {}, type = 'crop') => {
-    // Select best matching diagnosis from knowledge base
-    const matches = dbState.disease_knowledge_base.filter(d => d.target_type === type);
-    const diagnosis = matches[Math.floor(Math.random() * matches.length)] || dbState.disease_knowledge_base[0];
-    
+    const targetType = type || 'crop';
+    const matches = dbState.disease_knowledge_base.filter(d => d.target_type === targetType);
+    const sampleStr = ((imageMeta.sample_name || '') + ' ' + (imageMeta.image_url || '')).toLowerCase();
+
+    let diagnosis = null;
+    if (targetType === 'crop') {
+      if (sampleStr.includes('wheat') || sampleStr.includes('rust') || sampleStr.includes('yellow')) {
+        diagnosis = matches.find(d => d.id === 'dis-crop-2') || matches[1];
+      } else {
+        diagnosis = matches.find(d => d.id === 'dis-crop-1') || matches[0];
+      }
+    } else {
+      if (sampleStr.includes('lumpy') || sampleStr.includes('skin') || sampleStr.includes('nodule') || sampleStr.includes('lesion')) {
+        diagnosis = matches.find(d => d.id === 'dis-cattle-2') || matches[1];
+      } else {
+        diagnosis = matches.find(d => d.id === 'dis-cattle-1') || matches[0];
+      }
+    }
+    if (!diagnosis) {
+      diagnosis = matches[0] || dbState.disease_knowledge_base[0];
+    }
+
     // Attach matching recommended farm input product
     const recommendedProduct = dbState.farm_inputs.find(inp => inp.id === diagnosis.recommended_product_id) || dbState.farm_inputs[0];
 
     return {
       success: true,
       scan_id: 'SCAN-' + Date.now(),
-      scanned_type: type,
+      scanned_type: targetType,
+      sample_source: imageMeta.sample_name || 'File Upload from Folder',
       diagnosis: diagnosis.name,
       confidence_score: diagnosis.confidence_score,
       severity: diagnosis.severity,
@@ -974,7 +993,7 @@ const db = {
   // Voice NLP Parser
   parseVoiceCommand: (transcript = '') => {
     const text = transcript.toLowerCase();
-    
+
     if (text.includes('wheat') || text.includes('rice') || text.includes('tomato') || text.includes('onion') || text.includes('ghee') || text.includes('mango') || text.includes('chilli')) {
       let query = 'wheat';
       if (text.includes('tomato')) query = 'tomato';

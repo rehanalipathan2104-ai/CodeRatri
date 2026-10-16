@@ -12,10 +12,28 @@ import ProductDetailModal from './components/ProductDetailModal';
 import VoiceAssistant from './components/VoiceAssistant';
 import PlatformRoadmapModal from './components/PlatformRoadmapModal';
 import RevenueAnalyticsModal from './components/RevenueAnalyticsModal';
+import LoginPage from './components/LoginPage';
 
 export default function App() {
-  const [currentRole, setCurrentRole] = useState('consumer'); // 'farmer', 'consumer', 'industry'
-  const [activeTab, setActiveTab] = useState('marketplace'); // 'marketplace', 'farmer', 'industry', 'disease', 'krishi-bazaar', 'msp'
+  const [currentUser, setCurrentUser] = useState(() => {
+    try {
+      const saved = localStorage.getItem('kisansetu_user');
+      return saved ? JSON.parse(saved) : {
+        id: 'usr_patel',
+        name: 'Rajesh Patel',
+        phone: '+91 98765 43210',
+        role: 'farmer',
+        verified: true,
+        farm_name: 'Shree Krishna Organic Farms',
+        district: 'Anand',
+        state: 'Gujarat'
+      };
+    } catch (e) {
+      return null;
+    }
+  });
+  const [currentRole, setCurrentRole] = useState(currentUser?.role || 'farmer'); // 'farmer', 'consumer', 'industry'
+  const [activeTab, setActiveTab] = useState('marketplace'); // 'marketplace', 'farmer', 'industry', 'disease', 'krishi-bazaar', 'msp', 'login'
 
   // Application Data States
   const [products, setProducts] = useState([]);
@@ -27,6 +45,7 @@ export default function App() {
   const [orders, setOrders] = useState([]);
 
   // Modals & Drawers
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [trackingOrder, setTrackingOrder] = useState(null);
   const [selectedProductDetail, setSelectedProductDetail] = useState(null);
@@ -34,6 +53,31 @@ export default function App() {
   const [isRevenueOpen, setIsRevenueOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [toastMessage, setToastMessage] = useState('');
+
+  // Login & Auth Handlers
+  const handleLoginSuccess = (user) => {
+    setCurrentUser(user);
+    if (user.role) {
+      setCurrentRole(user.role);
+    }
+    try {
+      localStorage.setItem('kisansetu_user', JSON.stringify(user));
+    } catch (e) {}
+    showToast(`Welcome back, ${user.name}! Signed in as ${user.role?.toUpperCase() || 'USER'}`);
+    if (user.role === 'farmer') setActiveTab('farmer');
+    else if (user.role === 'industry') setActiveTab('industry');
+    else setActiveTab('marketplace');
+    setIsLoginModalOpen(false);
+  };
+
+  const handleLogout = () => {
+    setCurrentUser(null);
+    try {
+      localStorage.removeItem('kisansetu_user');
+    } catch (e) {}
+    showToast('Signed out of KisanSetu.');
+    setActiveTab('marketplace');
+  };
 
   // Show Toast Alert
   const showToast = (msg) => {
@@ -285,6 +329,9 @@ export default function App() {
         onOpenCart={() => setIsCartOpen(true)}
         onOpenRoadmap={() => setIsRoadmapOpen(true)}
         onOpenRevenue={() => setIsRevenueOpen(true)}
+        currentUser={currentUser}
+        onOpenLogin={() => setIsLoginModalOpen(true)}
+        onLogout={handleLogout}
         mspRates={mspRates}
       />
 
@@ -342,6 +389,13 @@ export default function App() {
             mspRates={mspRates}
           />
         )}
+
+        {activeTab === 'login' && (
+          <LoginPage 
+            onLoginSuccess={handleLoginSuccess}
+            onClose={() => setActiveTab('marketplace')}
+          />
+        )}
       </main>
 
       {/* Slide-over Cart Drawer */}
@@ -389,6 +443,28 @@ export default function App() {
       <VoiceAssistant 
         onVoiceCommandAction={handleVoiceCommandAction}
       />
+
+      {/* Login Modal Overlay */}
+      {isLoginModalOpen && (
+        <div style={{
+          position: 'fixed',
+          inset: 0,
+          zIndex: 2500,
+          background: 'rgba(15, 23, 42, 0.75)',
+          backdropFilter: 'blur(8px)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '20px'
+        }}>
+          <div style={{ maxWidth: '1050px', width: '100%' }}>
+            <LoginPage 
+              onLoginSuccess={handleLoginSuccess}
+              onClose={() => setIsLoginModalOpen(false)}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

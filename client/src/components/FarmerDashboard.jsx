@@ -51,10 +51,12 @@ export default function FarmerDashboard({
     // Default image if empty based on category
     let defaultImg = formData.image_url;
     if (!defaultImg) {
-      if (formData.category === 'Vegetables') defaultImg = 'https://images.unsplash.com/photo-1592924357228-91a4daadcfea?auto=format&fit=crop&w=600&q=80';
-      else if (formData.category === 'Grains & Cereals') defaultImg = 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&w=600&q=80';
-      else if (formData.category === 'Fruits') defaultImg = 'https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&w=600&q=80';
-      else defaultImg = 'https://images.unsplash.com/photo-1588252303782-cb80119abd6d?auto=format&fit=crop&w=600&q=80';
+      if (formData.category === 'Vegetables') defaultImg = '/images/tomatoes.jpg';
+      else if (formData.category === 'Grains & Cereals') defaultImg = '/images/wheat.jpg';
+      else if (formData.category === 'Fruits') defaultImg = '/images/mangoes.jpg';
+      else if (formData.category === 'Dairy & Honey') defaultImg = '/images/desi_ghee.jpg';
+      else if (formData.category === 'Oilseeds') defaultImg = '/images/soybeans.jpg';
+      else defaultImg = '/images/chillies.jpg';
     }
 
     onAddProduct({

@@ -54,6 +54,60 @@ app.get('/api/auth/me', (req, res) => {
   res.json({ success: true, data: user });
 });
 
+app.post('/api/auth/login', (req, res) => {
+  const { role, phone, email, identifier } = req.body;
+  const users = db.getUsers();
+  const cleanId = (identifier || phone || email || '').trim().toLowerCase();
+  
+  let user = users.find(u => 
+    (cleanId && (u.phone.replace(/\D/g, '') === cleanId.replace(/\D/g, '') || u.email.toLowerCase() === cleanId)) ||
+    (email && u.email.toLowerCase() === email.toLowerCase()) ||
+    (phone && u.phone === phone)
+  );
+  
+  if (!user && role) {
+    user = users.find(u => u.role === role);
+  }
+  
+  if (!user) {
+    user = users[0]; // fallback demo user
+  }
+
+  res.json({
+    success: true,
+    message: `Welcome back, ${user.name}! Authenticated as ${user.role.toUpperCase()}.`,
+    token: 'jwt-kisan-' + Math.random().toString(36).substring(2, 12),
+    data: user
+  });
+});
+
+app.post('/api/auth/register', (req, res) => {
+  const { name, phone, email, role, farm_name, state, district } = req.body;
+  const newUser = {
+    id: 'usr-' + (role || 'farmer') + '-' + Date.now(),
+    name: name || 'Kisan Mitra',
+    email: email || `${Date.now()}@kisan.in`,
+    phone: phone || '+91 99999 88888',
+    role: role || 'farmer',
+    is_verified: true,
+    profile: {
+      farm_name: farm_name || 'My Family Farm',
+      state: state || 'Maharashtra',
+      district: district || 'Nashik',
+      village_or_area: 'Rural Agricultural Hub',
+      rating: 5.0,
+      total_deals: 0,
+      avatar_url: '/images/farmer_login_hero.jpg'
+    }
+  };
+  res.status(201).json({
+    success: true,
+    message: `Account registered successfully! Welcome to KisanSetu, ${newUser.name}.`,
+    token: 'jwt-kisan-' + Math.random().toString(36).substring(2, 12),
+    data: newUser
+  });
+});
+
 // -----------------------------------------------------------------------------
 // Products API (Produce Catalog & Farmer Listings)
 // -----------------------------------------------------------------------------
@@ -323,13 +377,19 @@ app.get('/api/analytics', (req, res) => {
 });
 
 // -----------------------------------------------------------------------------
-// Serve static client build if present
+// Serve static client assets and build
 // -----------------------------------------------------------------------------
 const clientDist = path.join(__dirname, 'client/dist');
+const clientPublic = path.join(__dirname, 'client/public');
+
+// Explicit static asset routes
+app.use('/images', express.static(path.join(clientPublic, 'images')));
+app.use('/samples', express.static(path.join(clientPublic, 'samples')));
+app.use(express.static(clientPublic));
 app.use(express.static(clientDist));
 
 app.get('{*path}', (req, res, next) => {
-  if (req.path.startsWith('/api') || req.path.startsWith('/api-docs')) {
+  if (req.path.startsWith('/api') || req.path.startsWith('/api-docs') || req.path.startsWith('/images') || req.path.startsWith('/samples')) {
     return next();
   }
   const indexPath = path.join(clientDist, 'index.html');
